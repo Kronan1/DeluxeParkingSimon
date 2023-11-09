@@ -18,7 +18,7 @@ namespace DeluxeParkingSimon
             }
         }
 
-        public void NewVehicle()
+        public void CreateNewVehicle()
         {
             Random random = new Random();
             double size;
@@ -27,7 +27,7 @@ namespace DeluxeParkingSimon
             switch (random.Next(3))
             {
                 case 0:
-                    Car car = new Car(StringInput("Color"), ElectricInput());
+                    Car car = new Car(GetStringInput("Color"), GetElectricInput());
                     car.parkingStarted = DateTime.Now;
                     size = 1;
                     index = CheckAvailability(car, size);
@@ -37,7 +37,7 @@ namespace DeluxeParkingSimon
                     break;
 
                 case 1:
-                    Bus bus = new Bus(StringInput("Color"), PassangersInput());
+                    Bus bus = new Bus(GetStringInput("Color"), GetPassangerInput());
                     bus.parkingStarted = DateTime.Now;
                     size = 1;
                     index = CheckAvailability(bus, size);
@@ -49,7 +49,7 @@ namespace DeluxeParkingSimon
                     break;
 
                 case 2:
-                    Motorcycle motorcycle = new Motorcycle(StringInput("Color"), StringInput("Brand"));
+                    Motorcycle motorcycle = new Motorcycle(GetStringInput("Color"), GetStringInput("Brand"));
                     motorcycle.parkingStarted = DateTime.Now;
                     size = 0.5;
                     index = CheckAvailability(motorcycle, size);
@@ -94,7 +94,7 @@ namespace DeluxeParkingSimon
             return index;
         }
 
-        private string StringInput(string type)
+        private string GetStringInput(string type)
         {
             switch (type)
             {
@@ -132,26 +132,21 @@ namespace DeluxeParkingSimon
             return input;
         }
 
-        private bool ElectricInput()
+        private bool GetElectricInput()
         {
             Console.Write("Elbil: ");
 
-            switch (bool.TryParse(Console.ReadLine().ToLower(), out bool input))
+            bool input;
+            while (!bool.TryParse(Console.ReadLine().ToLower(), out input))
             {
-                case true:
-                    Console.Clear();
-                    break;
-
-                case false:
-                    Console.Clear();
-                    Console.WriteLine("Alternativ: \"true\" eller \"false\"");
-                    ElectricInput();
-                    break;
+                Console.Clear();
+                Console.WriteLine("Alternativ: \"true\" eller \"false\"");
             }
+
             return input;
         }
 
-        private int PassangersInput()
+        private int GetPassangerInput()
         {
             Console.Write("Passagerare: ");
 

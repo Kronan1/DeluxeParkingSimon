@@ -7,15 +7,15 @@
             // Hittade inget ställe i programmet där det skulle bli bättre med en generisk metod.
             ParkingGarage parkingGarage = new ParkingGarage();
             double waitTime = 10;
+
+            parkingGarage.CreateNewVehicle();
             DateTime dateTime = DateTime.Now;
 
-            parkingGarage.NewVehicle();
-            dateTime = DateTime.Now;
             while (true)
             {
                 if ((DateTime.Now - dateTime).TotalSeconds > waitTime)
                 {
-                    parkingGarage.NewVehicle();
+                    parkingGarage.CreateNewVehicle();
                     dateTime = DateTime.Now;
                 }
 

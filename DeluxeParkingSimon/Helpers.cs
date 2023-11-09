@@ -132,6 +132,7 @@ namespace DeluxeParkingSimon
                     }
                     else if (vehicles.First() is Motorcycle motorcycle)
                     {
+
                         foreach (Motorcycle motorcycle1 in vehicles)
                         {
                             Console.WriteLine("Plats  " + (i + 1) + "\tMC\t" + motorcycle1.Registration + "\t" + motorcycle1.ColorOfVehicle + "\t" + motorcycle1.Brand);
@@ -145,13 +146,13 @@ namespace DeluxeParkingSimon
             Console.WriteLine("Tryck på någon knapp för att ta bort ett fordon.");
 
             DateTime dateTime = DateTime.Now;
-            bool validateInput = false;
-            while ((DateTime.Now - dateTime).TotalSeconds <= waitTime && !validateInput)
+            bool input = false;
+            while ((DateTime.Now - dateTime).TotalSeconds <= waitTime && !input)
             {
                 switch (Console.KeyAvailable)
                 {
                     case true:
-                        validateInput = true;
+                        input = true;
                         break;
                     case false:
                         Thread.Sleep(100);
@@ -160,7 +161,7 @@ namespace DeluxeParkingSimon
             }
 
             Console.Clear();
-            return validateInput;
+            return input;
 
             #region Utkommenterade tester
             // ------------------------------------------------
