@@ -60,7 +60,7 @@ namespace DeluxeParkingSimon
             }
 
         }
-        private List<int> CheckAvailability(Vehicle vehicle, double size) // Gör om till generic klass?
+        private List<int> CheckAvailability(Vehicle vehicle, double size) 
         {
             List<int> index = new();
 
